@@ -13,19 +13,18 @@ app.listen((process.env.PORT || 5000));
 
 console.log('Echo bot server running at port 3000.')
 
-
 app.get("/", function (req, res) {
   res.send("Deployed!");
 });
 
 app.get("/webhook", function (req, res) {
-    
-console.log(process.env.VERIFICATION_TOKEN + "  MDR FDP")
-  if (req.query["hub.verify_token"] === process.env.VERIFICATION_TOKEN) {
+      if (req.query["hub.verify_token"] === process.env.VERIFICATION_TOKEN) {
     console.log("Verified webhook");
     res.status(200).send(req.query["hub.challenge"]);
   } else {
     console.error("Verification failed. The tokens do not match.");
+    console.log(process.env.VERIFICATION_TOKEN + "  MDR FDP")
+
     res.sendStatus(403);
   }
 });
