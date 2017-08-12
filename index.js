@@ -11,7 +11,7 @@ app.listen((process.env.PORT || 5000));
 
 let bot = new Bot({
   token: 'EAALViQNc1LgBADkj9bPZBjFwaHZB70tkloPYbgZBZAtUki8edZB8SU72rcJT2F6ZB3DnYFmdm6SlZCRkk9BJTYZCoigvrdpX2puTCvDom8lFucRnWRKGJ5B1rPZBeWjx1ilY8ecibTVt5E9Nli4bZAa3MvqAZCLwnCwS6pOW7eSOuKAlgZDZD',
-  verify: '797734397072568',
+  verify: 'this_is_my_token',
   app_secret: '1b6570300baa8ce5cfdcd349167a1a73'
 })
 
