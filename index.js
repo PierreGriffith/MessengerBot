@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require("body-parser");
 const http = require('http')
 
-
+let app = express()
 let bot = new Bot({
   token: 'EAALViQNc1LgBADkj9bPZBjFwaHZB70tkloPYbgZBZAtUki8edZB8SU72rcJT2F6ZB3DnYFmdm6SlZCRkk9BJTYZCoigvrdpX2puTCvDom8lFucRnWRKGJ5B1rPZBeWjx1ilY8ecibTVt5E9Nli4bZAa3MvqAZCLwnCwS6pOW7eSOuKAlgZDZD',
   verify: process.env.VERIFICATION_TOKEN,
@@ -29,6 +29,22 @@ bot.on('message', (payload, reply) => {
     })
   })
 })
+
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
+
+app.get('/', (req, res) => {
+  return bot._verify(req, res)
+})
+
+app.post('/', (req, res) => {
+  bot._handleMessage(req.body)
+  res.end(JSON.stringify({status: 'ok'}))
+})
+
 
 http.createServer(bot.middleware()).listen(5000)
 console.log('Echo bot server running at port 5000.')
