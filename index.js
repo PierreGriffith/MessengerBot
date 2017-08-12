@@ -1,4 +1,3 @@
-const Bot = require('messenger-bot')
 const request = require('request')
 const express = require('express')
 const bodyParser = require("body-parser");
@@ -15,7 +14,7 @@ console.log('Echo bot server running at port 3000.')
 
 
 app.get("/", function (req, res) {
-  res.send("Deployed!");
+  res.send("Deployed! ");
 });
 
 app.get("/webhook", function (req, res) {
