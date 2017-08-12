@@ -60,10 +60,10 @@ function processPostback(event) {
   var senderId = event.sender.id;
   var payload = event.postback.payload;
 
-  if (payload === "Greeting") {
+/*  if (payload === "Greeting") { */
     // Get user's first name from the User Profile API
     // and include it in the greeting
-    request({
+     request({
       url: "https://graph.facebook.com/v2.6/" + senderId,
       qs: {
         access_token: process.env.PAGE_ACCESS_TOKEN,
@@ -82,7 +82,8 @@ function processPostback(event) {
       var message = greeting + "My name is SP Movie Bot. I can tell you various details regarding movies. What movie would you like to know about?";
       sendMessage(senderId, {text: message});
     });
-  }
+  
+  /*} */
 }
 
 
