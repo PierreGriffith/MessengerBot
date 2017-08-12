@@ -1,3 +1,4 @@
+const Bot = require('messenger-bot')
 const request = require('request')
 const express = require('express')
 const bodyParser = require("body-parser");
@@ -14,11 +15,11 @@ console.log('Echo bot server running at port 3000.')
 
 
 app.get("/", function (req, res) {
-  res.send("Deployed! ");
+  res.send("Deployed!");
 });
 
 app.get("/webhook", function (req, res) {
-  if (req.query["hub.verify_token"] === "this_is_my_token") {
+  if (req.query["hub.verify_token"] === process.env.VERIFICATION_TOKEN) {
     console.log("Verified webhook");
     res.status(200).send(req.query["hub.challenge"]);
   } else {
