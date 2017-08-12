@@ -38,7 +38,9 @@ app.get("/webhook", function (req, res) {
 // All callbacks for Messenger will be POST-ed here
 app.post("/webhook", function (req, res) {
   // Make sure this is a page subscription
-  if (req.body.object == "page") 
+ 
+    console.log(req)
+    if (req.body.object == "page") 
   {
     // Iterate over each entry
     // There may be multiple entries if batched
@@ -51,7 +53,6 @@ app.post("/webhook", function (req, res) {
         }
       });
     });
-          processPostback(event);
             
     res.sendStatus(200);
   }
