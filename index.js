@@ -55,8 +55,9 @@ function processPostback(event) {
 
   if (payload === "Greeting") {
       
+      console.log(getname(recipient_id))
+      sendmessage(recipient_id, getname(recipient_id))
       
-      sendmessage(recipient_id, getname)
       /*
       var name = getname(senderId)
       var first_message = "Bonjour" + name + "je suis un bot créé par Melchior et je vais vous trouver l'ordinateur idéal"
@@ -137,8 +138,8 @@ function getname(recipent_id){
          
          else {
             var bodyObj = JSON.parse(body);
-            //return name = bodyObj.first_name;
-            response =  bodyObj.first_name;
+            response = bodyObj.first_name;
+            return response; 
       }  
     });
 }
