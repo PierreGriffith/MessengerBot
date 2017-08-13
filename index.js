@@ -3,15 +3,6 @@ const request = require('request')
 const express = require('express')
 const bodyParser = require("body-parser");
 
-/*
-let bot = new Bot({
-  token: 'EAALViQNc1LgBADkj9bPZBjFwaHZB70tkloPYbgZBZAtUki8edZB8SU72rcJT2F6ZB3DnYFmdm6SlZCRkk9BJTYZCoigvrdpX2puTCvDom8lFucRnWRKGJ5B1rPZBeWjx1ilY8ecibTVt5E9Nli4bZAa3MvqAZCLwnCwS6pOW7eSOuKAlgZDZD',
-  verify: process.env.VERIFICATION_TOKEN,
-  app_secret: '1b6570300baa8ce5cfdcd349167a1a73'
-})
-*/
-
-
 var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -23,7 +14,6 @@ app.get("/", function (req, res) {
 });
 
 // Facebook Webhook
-// Used for verification
 app.get("/webhook", function (req, res) {
   if (req.query["hub.verify_token"] === process.env.VERIFICATION_TOKEN) {
     console.log("Verified webhook");
@@ -60,13 +50,14 @@ app.post("/webhook", function (req, res) {
 
 
 function processPostback(event) {
-  var senderId = event.sender.id;
+  var recipient_id = event.sender.id;
   var payload = event.postback.payload;
 
   if (payload === "Greeting") {
-    // Get user's first name from the User Profile API
-    // and include it in the greeting
-    
+      
+      
+      sendmessage(recipient_id, getname)
+      /*
       var name = getname(senderId)
       var first_message = "Bonjour" + name + "je suis un bot créé par Melchior et je vais vous trouver l'ordinateur idéal"
       var buttons =  [
@@ -83,7 +74,7 @@ function processPostback(event) {
       
     Sendbuttons(senderId, first_message, buttons)
       
-      /*
+      
       
       request({
       url: "https://graph.facebook.com/v2.6/" + senderId,
