@@ -93,7 +93,7 @@ function processPostback(event) {
                      ]
       
         console.log(res["name"])
-        console.log(res)
+        console.log(res.name)
     
         Sendbuttons(recipient_id, first_message, buttons)      
             
