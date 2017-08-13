@@ -11,16 +11,6 @@ var Ordi = require("./models/ordinateur");
 var Type = require("./models/type");
 var User = require("./models/user");
 
- var ordiz = new Ordi( {
-  ordi_id: "4",
-  link: "4",
-  prix: "4",
-  cpu : "4",
-  ram : "4",
-  memory : "4"    
-})
- 
-
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
@@ -81,10 +71,13 @@ function processPostback(event) {
 
   if (payload === "Greeting") {
       insertname_db(recipient_id)
-      /*
+    
+      User.find( {user_id: recipient_id}, function(err, res){ 
       
-      var name = getname(recipient_id)
-      var first_message = "Bonjour" + name + "je suis un bot créé par Melchior et je vais vous trouver l'ordinateur idéal"
+        if (err) {
+            console.log("Message d'introduction raté")
+        } else {
+      var first_message = "Bonjour" + res["name"] + "je suis un bot créé par Melchior et je vais vous trouver l'ordinateur idéal"
       var buttons =  [
           {
             "title":"Gaming"
@@ -97,52 +90,15 @@ function processPostback(event) {
           }
                      ]
       
-    Sendbuttons(recipient_id, first_message, buttons)
-      
-      
-      
-      request({
-      url: "https://graph.facebook.com/v2.6/" + recipient_id,
-      qs: {
-        access_token: process.env.PAGE_ACCESS_TOKEN,
-        fields: "first_name"
-      },
-      method: "GET"
-    }, function(error, response, body) {
-      var greeting = "";
-      if (error) {
-        console.log("Error getting user's name: " +  error);
-      } else {
-        var bodyObj = JSON.parse(body);
-        name = bodyObj.first_name;
-        greeting = "Hi " + name + ". ";
+        Sendbuttons(recipient_id, first_message, buttons)      
+            
+            }
+        })
       }
-      var message = greeting + "My name is SP Movie Bot. I can tell you various details regarding movies. What movie would you like to know about?";
-      sendMessage(recipient_id, {text: message});
-    });
-  
-    */  
-      
-  }
 }
 
 
-
-function sendmessage(recipient_id, message) {
-  request({
-    url: "https://graph.facebook.com/v2.6/me/messages",
-    qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
-    method: "POST",
-    json: {
-      recipient: {id: recipient_id},
-      message: message,
-    }
-  }, function(error, response, body) {
-    if (error) {
-      console.log("Error sending message: " + response.error);
-    }
-  });
-}
+/* FUNCTION FOR DATABASE */
 
 function insertname_db(recipent_id)
 {  
@@ -182,11 +138,12 @@ function insertname_db(recipent_id)
                 else 
                     return 
             }) 
-          
-
       }    
     });
 }
+
+
+/*       FUNCTION FOR FACEBOOK       */
 
 
 function Sendbuttons(recipent_id, button_message, buttons){
@@ -209,6 +166,24 @@ function Sendbuttons(recipent_id, button_message, buttons){
         }
     }
           , function(error, response, body) {
+    if (error) {
+      console.log("Error sending message: " + response.error);
+    }
+  });
+}
+
+
+
+function sendmessage(recipient_id, message) {
+  request({
+    url: "https://graph.facebook.com/v2.6/me/messages",
+    qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
+    method: "POST",
+    json: {
+      recipient: {id: recipient_id},
+      message: message,
+    }
+  }, function(error, response, body) {
     if (error) {
       console.log("Error sending message: " + response.error);
     }
