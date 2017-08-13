@@ -32,16 +32,29 @@ app.post("/webhook", function (req, res) {
     // There may be multiple entries if batched
     req.body.entry.forEach(function(entry) 
     {
-        console.log(entry)
+        if (entry.messaging == undefined) {
       // Iterate over each messaging event
-      entry.messaging.forEach(function(event) 
+        entry.standby.forEach(function(event) 
                         {
         if (event.postback) {
           processPostback(event);
         }
-          
-          
-      });
+    });
+
+            
+        }
+            else {
+            
+        entry.messaging.forEach(function(event) 
+                        {
+        if (event.postback) {
+          processPostback(event);
+        }
+    });
+    
+            }
+    
+    
     });
 
     res.sendStatus(200);
