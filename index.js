@@ -79,19 +79,23 @@ function processPostback(event) {
             console.log("Message d'introduction raté")
         } else {
             
-      
-            console.log(res[0].name)
-            
-      var first_message = "Bonjour" + ""+ "je suis un bot créé par Melchior et je vais vous trouver l'ordinateur idéal"
+      var first_message = "Bonjour" + res[0].name + "je suis un bot créé par Melchior et je vais vous trouver l'ordinateur idéal"
       var buttons =  [
           {
-            "title":"Gaming"
+            "type":"postback",  
+            "title":"Gaming",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD"
           },
           {
+            "type":"postback",    
             "title":"Bureau",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD"
+          
           },          
           {
+            "type":"postback",    
             "title":"Navigation",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD"
           }
                      ]
       
