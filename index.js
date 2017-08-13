@@ -70,7 +70,7 @@ function processPostback(event) {
   var payload = event.postback.payload;
 
   if (payload === "Greeting") {
-      getname(recipient_id)
+      insertname_db(recipient_id)
       /*
       
       var name = getname(recipient_id)
@@ -134,7 +134,7 @@ function sendmessage(recipient_id, message) {
   });
 }
 
-function getname(recipent_id){
+function insertname_db(recipent_id){
      request({
       url: "https://graph.facebook.com/v2.6/" + recipent_id,
       qs: {
@@ -149,13 +149,18 @@ function getname(recipent_id){
       } else  {
             var bodyObj = JSON.parse(body);
             response = bodyObj.first_name;
+            User.insert({
+                 user_id: recipent_id,
+                 name: response,
+                last_name: "",
+                type : "",
+                budget: "",
+            })    
       }
-          
-    
      });
 }
 
-/*
+
 function Sendbuttons(recipent_id, button_message, buttons){
   request({
     url: "https://graph.facebook.com/v2.6/me/messages",
@@ -182,4 +187,3 @@ function Sendbuttons(recipent_id, button_message, buttons){
   });
 }
 
-*/
