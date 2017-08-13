@@ -2,11 +2,17 @@
 const request = require('request')
 const express = require('express')
 const bodyParser = require("body-parser");
-var session = require('express-session')
+
+
+var mongoose = require("mongoose");
+
+var db = mongoose.connect(process.env.MONGODB_URI);
+var Ordi = require("./models/ordinateur");
+var Type = require("./models/type");
+var User = require("./models/user");
 
 
 var app = express();
-app.set('trust proxy', 1)
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.listen((process.env.PORT || 5000));
@@ -65,9 +71,6 @@ function processPostback(event) {
 
   if (payload === "Greeting") {
       getname(recipient_id)
-     
-      
-      sendmessage(recipient_id, app.session.cookie.name )
       /*
       
       var name = getname(recipient_id)
@@ -143,21 +146,16 @@ function getname(recipent_id){
       var greeting = "";
        if (error) {
         console.log("Error getting user's name: " +  error);
-      }
-         
-         else 
-      {
+      } else  {
             var bodyObj = JSON.parse(body);
             response = bodyObj.first_name;
-            app.use( session({
-             cookie: { name : response }
-            }));
-        }  
+      }
+          
     
      });
 }
 
-
+/*
 function Sendbuttons(recipent_id, button_message, buttons){
   request({
     url: "https://graph.facebook.com/v2.6/me/messages",
@@ -184,4 +182,4 @@ function Sendbuttons(recipent_id, button_message, buttons){
   });
 }
 
-
+*/
