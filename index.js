@@ -162,18 +162,19 @@ function insertname_db(recipent_id)
       } else  {
             var bodyObj = JSON.parse(body);
             response = bodyObj.first_name;
-            
-          var tmp_user = new User({
+          
+          User.findOne( {_id : recipent_id}, function(err, res) {
+              if (err) 
+              {
+                  
+                  
+                    var tmp_user = new User({
                  user_id: recipent_id,
                  name: response,
                 last_name: "",
                 type : "",
                 budget: "",
             })
-          
-          User.findOne( {_id : recipent_id}, function(err, res) {
-              if (err) 
-              {
                   tmp_user.save(function (err, data) {
                 if (err) console.log("failed to save user" + err);
                 else 
