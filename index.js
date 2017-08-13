@@ -163,7 +163,7 @@ function insertname_db(recipent_id)
             var bodyObj = JSON.parse(body);
             response = bodyObj.first_name;
           
-          User.findOne( {_id : recipent_id}, function(err, res) {
+          User.findOne( {user_id : recipent_id}, function(err, res) {
               if (err) 
               {
                   
