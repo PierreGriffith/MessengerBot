@@ -72,7 +72,7 @@ function processPostback(event) {
   if (payload === "Greeting") {
       insertname_db(recipient_id)
     
-      console.logs("IM HERE")
+      console.log("IM HERE")
       
       User.find( {user_id: recipient_id}, function(err, res){ 
       
@@ -92,7 +92,7 @@ function processPostback(event) {
           }
                      ]
       
-        console.logs("IM HERE")
+        console.log("IM HERE")
     
         Sendbuttons(recipient_id, first_message, buttons)      
             
