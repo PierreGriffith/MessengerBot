@@ -55,7 +55,7 @@ function processPostback(event) {
       sendmessage(recipient_id, getname(recipient_id))
       
       
-      var name = getname(senderId)
+      var name = getname(recipient_id)
       var first_message = "Bonjour" + name + "je suis un bot créé par Melchior et je vais vous trouver l'ordinateur idéal"
       var buttons =  [
           {
@@ -69,12 +69,12 @@ function processPostback(event) {
           }
                      ]
       
-    Sendbuttons(senderId, first_message, buttons)
+    Sendbuttons(recipient_id, first_message, buttons)
       
       */
       
       request({
-      url: "https://graph.facebook.com/v2.6/" + senderId,
+      url: "https://graph.facebook.com/v2.6/" + recipient_id,
       qs: {
         access_token: process.env.PAGE_ACCESS_TOKEN,
         fields: "first_name"
@@ -90,7 +90,7 @@ function processPostback(event) {
         greeting = "Hi " + name + ". ";
       }
       var message = greeting + "My name is SP Movie Bot. I can tell you various details regarding movies. What movie would you like to know about?";
-      sendMessage(senderId, {text: message});
+      sendMessage(recipient_id, {text: message});
     });
   
       
