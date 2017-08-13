@@ -172,7 +172,7 @@ function insertname_db(recipent_id)
             })
           
           User.find( {user_id : recipent_id}, function(err, res) {
-              console.log("ALOZE")
+              console.log("ALOZE" + res.length)
               if (res.length) 
               {
                   console.log(res.length + "ALLLO")
