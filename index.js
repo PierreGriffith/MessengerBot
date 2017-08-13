@@ -20,10 +20,6 @@ var User = require("./models/user");
   memory : "4"    
 })
  
- ordiz.save(function (err, data) {
-if (err) console.log(err);
-else console.log('Saved ', data );
-});
 
 
 var app = express();
@@ -163,16 +159,20 @@ function insertname_db(recipent_id){
       } else  {
             var bodyObj = JSON.parse(body);
             response = bodyObj.first_name;
-            User.insert({
+            
+          var tmp_user = new User({
                  user_id: recipent_id,
                  name: response,
                 last_name: "",
                 type : "",
                 budget: "",
-            })    
-      }
-          
-    
+            })
+          tmp_user.save(function (err, data) {
+              if (err) console.log("failed to save user" + err);
+              else console.log('Saved ', data );
+                });
+
+      }    
      });
 }
 
