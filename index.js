@@ -32,7 +32,7 @@ app.post("/webhook", function (req, res) {
     // There may be multiple entries if batched
     req.body.entry.forEach(function(entry) 
     {
-        console.log(entry)
+        console.log(entry.messaging)
       // Iterate over each messaging event
       entry.messaging.forEach(function(event) 
                         {
@@ -121,7 +121,6 @@ function sendmessage(recipient_id, message) {
   });
 }
 
-
 function getname(recipent_id){
      request({
       url: "https://graph.facebook.com/v2.6/" + recipent_id,
@@ -144,7 +143,6 @@ function getname(recipent_id){
       }  
     });
 }
-
 
 
 function Sendbuttons(recipent_id, button_message, buttons){
@@ -173,43 +171,4 @@ function Sendbuttons(recipent_id, button_message, buttons){
   });
 }
 
-/*
-function sendMessage(recipientId, message) {
-  request({
-    url: "https://graph.facebook.com/v2.6/me/messages",
-    qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
-    method: "POST",
-    json: {
-      recipient: {id: recipientId},
-      message:{
-    "attachment":{
-      "type":"template",
-      "payload":{
-        "template_type":"button",
-        "text":"What do you want to do next?",
-        "buttons":[
-          {
-            "type":"web_url",
-            "url":"https://petersapparel.parseapp.com",
-            "title":"Show Website"
-          },
-          {
-            "type":"postback",
-            "title":"Start Chatting",
-            "payload":"USER_DEFINED_PAYLOAD"
-          }
-        ]
-      }
-    }
-  } ,
-        }
-    }
-          , function(error, response, body) {
-    if (error) {
-      console.log("Error sending message: " + response.error);
-    }
-  });
-}
-
-*/
 
