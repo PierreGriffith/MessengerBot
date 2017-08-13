@@ -137,7 +137,8 @@ function getname(recipent_id){
          
          else {
             var bodyObj = JSON.parse(body);
-            return name = bodyObj.first_name;
+            //return name = bodyObj.first_name;
+            response =  bodyObj.first_name;
       }  
     });
 }
