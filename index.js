@@ -76,7 +76,7 @@ function processPostback(event) {
       
     Sendbuttons(recipient_id, first_message, buttons)
       
-      */
+      
       
       request({
       url: "https://graph.facebook.com/v2.6/" + recipient_id,
@@ -98,7 +98,7 @@ function processPostback(event) {
       sendMessage(recipient_id, {text: message});
     });
   
-      
+    */  
       
   }
 }
