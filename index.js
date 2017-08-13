@@ -145,7 +145,11 @@ function sendmessage(recipient_id, message) {
 }
 
 function insertname_db(recipent_id){
-     request({
+   
+    var tmp_name
+    var tmp_lastname
+    
+    request({
       url: "https://graph.facebook.com/v2.6/" + recipent_id,
       qs: {
         access_token: process.env.PAGE_ACCESS_TOKEN,
@@ -158,22 +162,44 @@ function insertname_db(recipent_id){
         console.log("Error getting user's name: " +  error);
       } else  {
             var bodyObj = JSON.parse(body);
-            response = bodyObj.first_name;
-            
-          var tmp_user = new User({
+            tmp_name = bodyObj.first_name;
+
+      }    
+     });
+
+    
+  request({
+      url: "https://graph.facebook.com/v2.6/" + recipent_id,
+      qs: {
+        access_token: process.env.PAGE_ACCESS_TOKEN,
+        fields: "last_name"
+      },
+      method: "GET"
+    }, function(error, response, body) {
+      var greeting = "";
+       if (error) {
+        console.log("Error getting user's name: " +  error);
+      } else  {
+            var bodyObj = JSON.parse(body);
+            tmp_lastname = bodyObj.first_name;
+      }    
+     });
+        
+    
+  var tmp_user = new User({
                  user_id: recipent_id,
-                 name: response,
-                last_name: "",
+                 name: tmp_name,
+                last_name: tmp_lastname,
                 type : "",
                 budget: "",
             })
+
+
           tmp_user.save(function (err, data) {
               if (err) console.log("failed to save user" + err);
               else console.log('Saved ', data );
                 });
-
-      }    
-     });
+  
 }
 
 
