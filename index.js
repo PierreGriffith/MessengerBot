@@ -32,27 +32,21 @@ app.post("/webhook", function (req, res) {
     // There may be multiple entries if batched
     req.body.entry.forEach(function(entry) 
     {
-        if (entry.messaging == undefined) {
+      if (entry.messaging == undefined) {
       // Iterate over each messaging event
-        entry.standby.forEach(function(event) 
-                        {
-        if (event.postback) {
-          processPostback(event);
-        }
-    });
-
-            
-        }
-            else {
-            
-        entry.messaging.forEach(function(event) 
-                        {
-        if (event.postback) {
-          processPostback(event);
-        }
-    });
-    
+        entry.standby.forEach(function(event){
+            if (event.postback) {
+                processPostback(event);
             }
+        });
+      }
+            
+        else {
+        entry.messaging.forEach(function(event) {
+        if (event.postback) {
+          processPostback(event);
+        }});
+        }
     
     
     });
@@ -68,10 +62,10 @@ function processPostback(event) {
 
   if (payload === "Greeting") {
       
-      console.log(getname(recipient_id))
-      /*
-      sendmessage(recipient_id, getname(recipient_id))
+     
       
+      sendmessage(recipient_id, getname(recipient_id))
+      /*
       
       var name = getname(recipient_id)
       var first_message = "Bonjour" + name + "je suis un bot créé par Melchior et je vais vous trouver l'ordinateur idéal"
