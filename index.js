@@ -51,9 +51,10 @@ function processPostback(event) {
   if (payload === "Greeting") {
       
       console.log(getname(recipient_id))
+      /*
       sendmessage(recipient_id, getname(recipient_id))
       
-      /*
+      
       var name = getname(senderId)
       var first_message = "Bonjour" + name + "je suis un bot créé par Melchior et je vais vous trouver l'ordinateur idéal"
       var buttons =  [
@@ -70,7 +71,7 @@ function processPostback(event) {
       
     Sendbuttons(senderId, first_message, buttons)
       
-      
+      */
       
       request({
       url: "https://graph.facebook.com/v2.6/" + senderId,
@@ -92,7 +93,6 @@ function processPostback(event) {
       sendMessage(senderId, {text: message});
     });
   
-      */
       
       
   }
