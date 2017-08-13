@@ -63,7 +63,7 @@ function processPostback(event) {
   var senderId = event.sender.id;
   var payload = event.postback.payload;
 
-/*  if (payload === "Greeting") { */
+  if (payload === "Greeting") {
     // Get user's first name from the User Profile API
     // and include it in the greeting
      request({
@@ -86,11 +86,11 @@ function processPostback(event) {
       sendMessage(senderId, {text: message});
     });
   
-  /*} */
+  }
 }
 
 
-// sends message to user
+/*
 function sendMessage(recipientId, message) {
   request({
     url: "https://graph.facebook.com/v2.6/me/messages",
@@ -106,7 +106,45 @@ function sendMessage(recipientId, message) {
     }
   });
 }
+*/
 
+
+function sendMessage(recipientId, message) {
+  request({
+    url: "https://graph.facebook.com/v2.6/me/messages",
+    qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
+    method: "POST",
+    json: {
+      recipient: {id: recipientId},
+      message:{
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text":"What do you want to do next?",
+        "buttons":[
+          {
+            "type":"web_url",
+            "url":"https://petersapparel.parseapp.com",
+            "title":"Show Website"
+          },
+          {
+            "type":"postback",
+            "title":"Start Chatting",
+            "payload":"USER_DEFINED_PAYLOAD"
+          }
+        ]
+      }
+    }
+  } ,
+        }
+    }
+          , function(error, response, body) {
+    if (error) {
+      console.log("Error sending message: " + response.error);
+    }
+  });
+}
 
 
 
