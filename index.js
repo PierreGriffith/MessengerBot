@@ -2,8 +2,11 @@
 const request = require('request')
 const express = require('express')
 const bodyParser = require("body-parser");
+var session = require('express-session')
+
 
 var app = express();
+app.set('trust proxy', 1)
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.listen((process.env.PORT || 5000));
@@ -61,10 +64,10 @@ function processPostback(event) {
   var payload = event.postback.payload;
 
   if (payload === "Greeting") {
-      
+      getname(recipient_id)
      
       
-      sendmessage(recipient_id, getname(recipient_id))
+      sendmessage(recipient_id, app.session.cookie.name )
       /*
       
       var name = getname(recipient_id)
@@ -142,13 +145,16 @@ function getname(recipent_id){
         console.log("Error getting user's name: " +  error);
       }
          
-         else {
+         else 
+      {
             var bodyObj = JSON.parse(body);
             response = bodyObj.first_name;
-            console.log(response)
-            return response; 
-      }  
-    });
+            app.use( session({
+             cookie: { name : response }
+            }));
+        }  
+    
+     });
 }
 
 
