@@ -171,14 +171,12 @@ function insertname_db(recipent_id)
                 budget: "",
             })
           
-          User.findOne( {user_id : recipent_id}, function(err, res) {
-              if (err) 
+          User.find( {user_id : recipent_id}, function(err, res) {
+              if (res.length) 
               {
                   tmp_user.save(function (err, data) {
                 if (err) console.log("failed to save user" + err);
-                else 
-                    console.log('Saved ', data );
-                });
+                else console.log('Saved ', data ); });
               }
                 else 
                     return 
