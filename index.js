@@ -174,6 +174,7 @@ function insertname_db(recipent_id)
           User.find( {user_id : recipent_id}, function(err, res) {
               if (res.length) 
               {
+                  console.log(res.length)
                   tmp_user.save(function (err, data) {
                 if (err) console.log("failed to save user" + err);
                 else console.log('Saved ', data ); });
