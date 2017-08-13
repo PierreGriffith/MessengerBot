@@ -124,7 +124,7 @@ function sendmessage(recipient_id, message) {
 function getname(recipent_id){
     var name;
      request({
-      url: "https://graph.facebook.com/v2.6/" + senderId,
+      url: "https://graph.facebook.com/v2.6/" + recipent_id,
       qs: {
         access_token: process.env.PAGE_ACCESS_TOKEN,
         fields: "first_name"
