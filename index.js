@@ -122,7 +122,6 @@ function sendmessage(recipient_id, message) {
 
 
 function getname(recipent_id){
-    var name;
      request({
       url: "https://graph.facebook.com/v2.6/" + recipent_id,
       qs: {
@@ -132,14 +131,15 @@ function getname(recipent_id){
       method: "GET"
     }, function(error, response, body) {
       var greeting = "";
-      if (error) {
+       if (error) {
         console.log("Error getting user's name: " +  error);
-      } else {
-        var bodyObj = JSON.parse(body);
-        name = bodyObj.first_name;
       }
+         
+         else {
+            var bodyObj = JSON.parse(body);
+            return name = bodyObj.first_name;
+      }  
     });
-    return name;
 }
 
 
