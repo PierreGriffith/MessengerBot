@@ -8,7 +8,7 @@ var ordi_schema = new Schema({
   prix: {type: String},
   cpu : {type: String},
   ram : {type: String},
-  memory : {type: String},
+  memory : {type: String}
     
 });
 

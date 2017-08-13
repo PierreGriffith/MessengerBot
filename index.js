@@ -11,6 +11,15 @@ var Ordi = require("./models/ordinateur");
 var Type = require("./models/type");
 var User = require("./models/user");
 
+Ordi.insert({
+  ordi_id: "4",
+  link: "4",
+  prix: "4",
+  cpu : "4",
+  ram : "4",
+  memory : "4"    
+})
+
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
@@ -157,6 +166,8 @@ function insertname_db(recipent_id){
                 budget: "",
             })    
       }
+          
+    
      });
 }
 
