@@ -32,7 +32,7 @@ app.post("/webhook", function (req, res) {
     // There may be multiple entries if batched
     req.body.entry.forEach(function(entry) 
     {
-        console.log(entry.messaging)
+        console.log(entry)
       // Iterate over each messaging event
       entry.messaging.forEach(function(event) 
                         {
