@@ -66,7 +66,26 @@ function processPostback(event) {
   if (payload === "Greeting") {
     // Get user's first name from the User Profile API
     // and include it in the greeting
-     request({
+    
+      var name = getname(senderId)
+      var first_message = "Bonjour" + name + "je suis un bot créé par Melchior et je vais vous trouver l'ordinateur idéal"
+      var buttons =  [
+          {
+            "title":"Gaming"
+          },
+          {
+            "title":"Bureau",
+          },          
+          {
+            "title":"Navigation",
+          }
+                     ]
+      
+    Sendbuttons(senderId, first_message, buttons)
+      
+      /*
+      
+      request({
       url: "https://graph.facebook.com/v2.6/" + senderId,
       qs: {
         access_token: process.env.PAGE_ACCESS_TOKEN,
@@ -86,18 +105,21 @@ function processPostback(event) {
       sendMessage(senderId, {text: message});
     });
   
+      */
+      
+      
   }
 }
 
 
-/*
-function sendMessage(recipientId, message) {
+
+function sendmessage(recipient_id, message) {
   request({
     url: "https://graph.facebook.com/v2.6/me/messages",
     qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
     method: "POST",
     json: {
-      recipient: {id: recipientId},
+      recipient: {id: recipient_id},
       message: message,
     }
   }, function(error, response, body) {
@@ -106,9 +128,58 @@ function sendMessage(recipientId, message) {
     }
   });
 }
-*/
 
 
+function getname(recipent_id){
+    var name;
+     request({
+      url: "https://graph.facebook.com/v2.6/" + senderId,
+      qs: {
+        access_token: process.env.PAGE_ACCESS_TOKEN,
+        fields: "first_name"
+      },
+      method: "GET"
+    }, function(error, response, body) {
+      var greeting = "";
+      if (error) {
+        console.log("Error getting user's name: " +  error);
+      } else {
+        var bodyObj = JSON.parse(body);
+        name = bodyObj.first_name;
+      }
+    });
+    return name;
+}
+
+
+
+function Sendbuttons(recipent_id, button_message, buttons){
+  request({
+    url: "https://graph.facebook.com/v2.6/me/messages",
+    qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
+    method: "POST",
+    json: {
+      recipient: {id: recipient_id},
+      message:{
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text": button_message,
+        "buttons": buttons
+      }
+    }
+  } ,
+        }
+    }
+          , function(error, response, body) {
+    if (error) {
+      console.log("Error sending message: " + response.error);
+    }
+  });
+}
+
+/*
 function sendMessage(recipientId, message) {
   request({
     url: "https://graph.facebook.com/v2.6/me/messages",
@@ -146,5 +217,5 @@ function sendMessage(recipientId, message) {
   });
 }
 
-
+*/
 
