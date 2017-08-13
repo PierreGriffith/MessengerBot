@@ -80,8 +80,8 @@ function processPostback(event) {
             console.log("Message d'introduction raté")
         } else {
             
-            var bodyObj = JSON.parse(res);
-            name = bodyObj.name;
+      
+            console.log(res['name'])
             
       var first_message = "Bonjour" + name + "je suis un bot créé par Melchior et je vais vous trouver l'ordinateur idéal"
       var buttons =  [
@@ -96,8 +96,6 @@ function processPostback(event) {
           }
                      ]
       
-        console.log(name)
-    
         Sendbuttons(recipient_id, first_message, buttons)      
             
             }
