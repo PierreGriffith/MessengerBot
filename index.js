@@ -172,8 +172,7 @@ function insertname_db(recipent_id)
             })
           
           User.find( {user_id : recipent_id}, function(err, res) {
-              console.log("ALOZE" + res.length)
-              if (res.length) 
+              if (res.length == 0) 
               {
                   console.log(res.length + "ALLLO")
                   tmp_user.save(function (err, data) {
