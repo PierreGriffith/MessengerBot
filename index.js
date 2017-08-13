@@ -72,7 +72,6 @@ function processPostback(event) {
   if (payload === "Greeting") {
       insertname_db(recipient_id)
     
-      console.log("IM HERE")
       
       User.find( {user_id: recipient_id}, function(err, res){ 
       
@@ -81,9 +80,9 @@ function processPostback(event) {
         } else {
             
       
-            console.log(res['name'])
+            console.log(res[0].name)
             
-      var first_message = "Bonjour" + name + "je suis un bot créé par Melchior et je vais vous trouver l'ordinateur idéal"
+      var first_message = "Bonjour" + ""+ "je suis un bot créé par Melchior et je vais vous trouver l'ordinateur idéal"
       var buttons =  [
           {
             "title":"Gaming"
