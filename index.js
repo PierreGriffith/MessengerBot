@@ -11,7 +11,7 @@ var Ordi = require("./models/ordinateur");
 var Type = require("./models/type");
 var User = require("./models/user");
 
-Ordi.insert({
+ var ordiz = new Ordi( {
   ordi_id: "4",
   link: "4",
   prix: "4",
@@ -19,6 +19,11 @@ Ordi.insert({
   ram : "4",
   memory : "4"    
 })
+ 
+ ordiz.save(function (err, data) {
+if (err) console.log(err);
+else console.log('Saved ', data );
+});
 
 
 var app = express();
