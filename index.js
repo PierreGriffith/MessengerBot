@@ -156,7 +156,7 @@ function Sendbuttons(recipent_id, button_message, buttons){
     qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
     method: "POST",
     json: {
-      recipient: {id: recipient_id},
+      recipient: {id: recipent_id},
       message:{
     "attachment":{
       "type":"template",
