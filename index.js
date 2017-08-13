@@ -172,13 +172,16 @@ function insertname_db(recipent_id)
             })
           
           User.findOne( {_id : recipent_id}, function(err, res) {
-              if (err) {
+              if (err) 
+              {
                   tmp_user.save(function (err, data) {
                 if (err) console.log("failed to save user" + err);
                 else 
                     console.log('Saved ', data );
                 });
-                else return }
+              }
+                else 
+                    return 
             }) 
           
 
