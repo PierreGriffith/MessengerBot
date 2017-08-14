@@ -197,7 +197,7 @@ function send_ordinateur(recipient_id, res)
         console.log(resp.link)
         */
         var obj = JSON.parse(link)    
-        console.log(lobj.link)
+        console.log(obj.link)
         
     var buttons =  [
        { 
