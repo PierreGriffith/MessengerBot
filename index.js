@@ -183,11 +183,10 @@ function send_ordinateur(recipient_id, res)
 {
     
     
-    Ordi.find({name : res},"link",function(err, resp) 
+    Ordi.find({name : res},"link",{}).lean().exec(function(err, resp)
     {
-    
-//    console.log(resp[0].name)
-    console.log(resp.link )  
+                
+          console.log(resp.link)  
         
     var buttons =  [
        { 
@@ -199,8 +198,7 @@ function send_ordinateur(recipient_id, res)
       }]
                   
     Sendbuttons(recipient_id, "Voici un ordinateur qui correspond à votre utilisation", buttons)
-              
-    }) 
+    })
     
 }
 
