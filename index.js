@@ -190,7 +190,7 @@ function send_ordinateur(recipient_id, res)
         
         var split = link.split(",");
 
-        var split2 = split[1].split("\"");
+        var split2 = split[1];
         
     
 //        console.log(split)
