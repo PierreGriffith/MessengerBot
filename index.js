@@ -154,7 +154,11 @@ function processPostback(event) {
 
 function processMessage(event) 
 {    
-  if (!event.message.is_echo) {
+    /*
+  if (!event.message.is_echo) 
+  {
+      */
+      
     var message = event.message;
     var senderId = event.sender.id;
 
@@ -176,8 +180,9 @@ function processMessage(event)
         console.log(error);
     });
     
-        
+    /*    
     }
+    */
   }
 }
 
