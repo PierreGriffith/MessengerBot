@@ -117,6 +117,20 @@ function processPostback(event) {
             }
         })
       }
+    
+    if (payload == "Gaming" ) 
+      sendMessage(senderId, {text: "Quels jeux ou quelle carte graphique vous plairait - il de voir"});
+
+      if (payload == "Bureau" ) 
+      sendMessage(senderId, {text: "dans quoi travaillez vous ? ou quel suite de logiciels utilisez vous"});
+
+      if (payload == "Navigation" ) 
+      sendMessage(senderId, {text: "quels site allez vous consultez"});
+      }
+    
+    
+    
+    
 }
 
 
