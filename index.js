@@ -165,7 +165,7 @@ function processMessage(event)
         {
             //var _obj = response.fulfillment.speech
             //var res = _obj.toLowerCase();
-            console.log(response.result)
+            console.log(response.result.fulfillment)
             
             
             //console.log(res)
