@@ -181,6 +181,8 @@ function processMessage(event)
 
 function send_ordinateur(recipient_id, res)
 {
+    
+    console.log(res)
     Ordi.find({name : res}, function(err, resp) {
               if (resp.length == 0) 
               {
