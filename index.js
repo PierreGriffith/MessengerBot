@@ -165,11 +165,10 @@ function processMessage(event)
         {
             var _obj = response.fulfillment.speech
             var res = _obj.toLowerCase();
-            
+            console.log(response)
+            console.log(res)
             console.log("FUCK")
             send_ordinateur(senderId, res)
-            
-        
         });
 
     request.on('error', function(error) {
