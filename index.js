@@ -187,15 +187,19 @@ function send_ordinateur(recipient_id, res)
     {
                 
         link = JSON.stringify(resp) 
+    
         /*
         console.log(link + "--------------------")
         console.log(link.link)
+        
         console.log(resp.link)
         console.log(resp.link)
         */
         var obj = JSON.parse(link)
-        console.log(obj.link)
-        
+        for(var x in obj)
+        {
+            console.log( "MDR"+data)
+        }    
         
         
         
