@@ -21,9 +21,7 @@ app.listen((process.env.PORT || 5000));
 var app_ai = apiai(process.env.CREDENTIALS_APIAI);
 
 /*
-var request = app.textRequest('<Your text query>', {
-    sessionId: 'pcmongallet'
-});
+
 
 */
 
@@ -118,26 +116,31 @@ function processPostback(event) {
         })
       }
     
-    if (payload == "Gaming" ) {
-      sendmessage(recipient_id, {text: "Quels jeux ou quelle carte graphique vous plairait - il de voir"}); }
+    if (payload == "Gaming" ) 
+    {
+      sendmessage(recipient_id, {text: "Quels jeux ou quelle carte graphique vous plairait - il de voir"}); 
+      inserttype_db(recipient_id, payload)
+    }
 
-      if (payload == "Bureau" ) { 
-      sendmessage(recipient_id, {text: "dans quoi travaillez vous ? ou quel suite de logiciels utilisez vous"}); }
-
-      if (payload == "Navigation" ) { 
-      sendmessage(recipient_id, {text: "quels site allez vous consultez"}); }
+      if (payload == "Bureau" ) 
+      { 
+      sendmessage(recipient_id, {text: "dans quoi travaillez vous ? ou quel suite de logiciels utilisez vous"}); 
+      inserttype_db(recipient_id, payload)
+      }
+    
+      if (payload == "Navigation" ) 
+      { 
+      sendmessage(recipient_id, {text: "quels site allez vous consultez"}); 
+      inserttype_db(recipient_id, payload)
+      }
       
-    
-    
-    
-    
 }
 
 
 
 function processMessage(event) 
 {
-    console.log("FUCK BITCHES")
+    
   if (!event.message.is_echo) {
     var message = event.message;
     var senderId = event.sender.id;
@@ -146,25 +149,43 @@ function processMessage(event)
     console.log("Message is: " + JSON.stringify(message));
 
     // You may get a text or attachment but not both
-    if (message.text) {
-      var formattedMsg = message.text.toLowerCase().trim();
+    if (message.text) 
+    {
+        var request = app.textRequest(message.text, {
+            sessionId: 'pcmongallet'
+        });
         
-      if (formattedMsg == "Gaming" ) 
-      sendMessage(senderId, {text: "Quels jeux ou quelle carte graphique vous plairait - il de voir"});
+        request.on('response', function(response) {
+            console.log(response);
+        });
 
-      if (formattedMsg == "Bureau" ) 
-      sendMessage(senderId, {text: "dans quoi travaillez vous ? ou quel suite de logiciels utilisez vous"});
-
-      if (formattedMsg == "Navigation" ) 
-      sendMessage(senderId, {text: "quels site allez vous consultez"});
-      }
-    } else if (message.attachments) {
-      sendMessage(senderId, {text: "Sorry, I don't understand your request."});
+    request.on('error', function(error) {
+        console.log(error);
+    });
+    
+        
     }
 }
 
 
 /* FUNCTION FOR DATABASE */
+
+
+function inserttype_db(recipent_id, message)
+{
+    User.find( {user_id : recipent_id}, function(err, res) {
+              if (res.length == 0) 
+              {
+                  res.type = message  
+                  tmp_user.save(function (err, data) {
+                if (err) console.log("failed to save user" + err);
+                else console.log('Saved ', data ); });
+              }
+                else 
+                    return 
+            }) 
+}
+
 
 function insertname_db(recipent_id)
 {  
