@@ -190,9 +190,10 @@ function send_ordinateur(recipient_id, res)
         
         var split = link.split(",");
 
-        var split2 = split[1];
+        var split2 = split[1].split("\"");
         
-        console.log(split)
+    
+//        console.log(split)
         console.log(split2)
         
         
@@ -205,8 +206,6 @@ function send_ordinateur(recipient_id, res)
         */
         //var obj = JSON.parse(resp)
         
-        
-        console.log(link)
         
     var buttons =  [
        { 
