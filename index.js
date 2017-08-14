@@ -192,7 +192,7 @@ function send_ordinateur(recipient_id, res)
        { 
         "type":"web_url",
         "url": link,
-        "title":"Ordinateur pour" + res,
+        "title":"Ordinateur pour " + res,
         "webview_height_ratio": "compact"
 
       }]
