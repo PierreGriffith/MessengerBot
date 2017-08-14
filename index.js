@@ -186,12 +186,15 @@ function send_ordinateur(recipient_id, res)
     Ordi.find({name : res}, function(err, resp) 
             {
         
-    
+    console.log(resp.name)
+    console.log(resp.link)
     var buttons =  [
        { 
         "type":"web_url",
         "url": "lol",
-        "title":"Ordinateur pour"
+        "title":"Ordinateur pour",
+        "webview_height_ratio": "compact"
+
       }]
                   
     Sendbuttons(recipient_id, "Voici un ordinateur qui correspond à votre utilisation", buttons)
@@ -292,6 +295,8 @@ function Sendbuttons(recipent_id, button_message, buttons){
     }
   });
 }
+
+
 
 
 
