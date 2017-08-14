@@ -174,6 +174,8 @@ function processMessage(event)
         console.log(error);
     });
     
+    request.end();
+
   }
 }
 
