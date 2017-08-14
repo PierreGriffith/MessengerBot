@@ -185,10 +185,10 @@ function send_ordinateur(recipient_id, res)
     
     Ordi.find({name : res}, function(err, resp) 
             {
-        
+    var data = resp.toJSON()    
   
 //    console.log(resp[0].name)
-    console.log(resp.link)
+    console.log(data.link)
         
     var buttons =  [
        { 
