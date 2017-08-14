@@ -186,9 +186,9 @@ function send_ordinateur(recipient_id, res)
     Ordi.find({name : res},"link",{}).lean().exec(function(err, resp)
     {
                 
-          console.log(resp)  
         link = JSON.stringify(resp) 
-        console.log(link)
+        console.log(link "--------------------")
+        console.log(link.link)
         
         
     var buttons =  [
