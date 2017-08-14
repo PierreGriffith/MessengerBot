@@ -182,9 +182,12 @@ function processMessage(event)
 function send_ordinateur(recipient_id, res)
 {
     
-    console.log(res)
+    
     Ordi.find({name : res}, function(err, resp) 
             {
+        
+        console.log(resp)
+        
                     var buttons =  [
        { 
         "type":"web_url",
