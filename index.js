@@ -191,10 +191,6 @@ function send_ordinateur(recipient_id, res)
         console.log(link.link)
 
         
-        var link2 = resp.toJSON();
-        
-        console.log(link.link)
-        
         /*
         console.log(link + "--------------------")
         console.log(link.link)
