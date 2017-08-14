@@ -227,21 +227,7 @@ function processMessage(event)
         {
             var _obj = response.fulfillment.speech
             var res = _obj.toLowerCase();
-            
-            if (res == "mails")
-                
-            if (res == "youtube")
-                
-            if (res == "csgo")
-                
-            if (res == "lol")
-            
-            if (res == "adobe")
-                
-            if (res == "outlook")
-            
-                
-            
+        
         });
 
     request.on('error', function(error) {
