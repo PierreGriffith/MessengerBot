@@ -186,7 +186,7 @@ function send_ordinateur(recipient_id, res)
     Ordi.find({name : res}, function(err, resp) 
             {
         
-        
+        /*
     var buttons =  [
        { 
         "type":"web_url",
@@ -194,7 +194,28 @@ function send_ordinateur(recipient_id, res)
         "title":"Ordinateur pour " + resp.name + "" ,
         "webview_height_ratio": "compact"
       }
-                    ]
+          
+        ] */
+        
+        var buttons =  [
+          {
+            "type":"postback",  
+            "title":"Gaming",
+            "payload":"Gaming"
+          },
+          {
+            "type":"postback",    
+            "title":"Bureau",
+            "payload":"Bureau"
+          
+          },          
+          {
+            "type":"postback",    
+            "title":"Navigation",
+            "payload":"Navigation"
+          }
+                     ]
+        
     Sendbuttons(recipient_id, "Voici un ordinateur qui correspond à votre utilisation", buttons)
               
     }) 
