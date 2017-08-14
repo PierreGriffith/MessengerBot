@@ -163,15 +163,7 @@ function processMessage(event)
         
         request.on('response', function(response) 
         {
-            //var _obj = response.fulfillment.speech
-            //var res = _obj.toLowerCase();
-            console.log(response.result.fulfillment)
-            
-            
-            //console.log(res)
-           // console.log(obj)
-           // console.log(obj.response)
-            //send_ordinateur(senderId, res)
+            send_ordinateur(senderId, response.result.fulfillment.speech)
         });
 
     request.on('error', function(error) {
