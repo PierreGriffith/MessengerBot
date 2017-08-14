@@ -57,27 +57,27 @@ var app_ai = apiai(process.env.CREDENTIALS_APIAI);
             })
 
   
-      tmp_user.ordi1(function (err, data) {
+      ordi1.save(function (err, data) {
                 if (err) console.log("failed to save user" + err);
                 else console.log('Saved ', data ); });
 
-      tmp_user.ordi2(function (err, data) {
+      ordi2.save(function (err, data) {
                 if (err) console.log("failed to save user" + err);
                 else console.log('Saved ', data ); });
 
-      tmp_user.ordi3(function (err, data) {
+      ordi3.save(function (err, data) {
                 if (err) console.log("failed to save user" + err);
                 else console.log('Saved ', data ); });
 
-      tmp_user.ordi4(function (err, data) {
+      ordi4.save(function (err, data) {
                 if (err) console.log("failed to save user" + err);
                 else console.log('Saved ', data ); });
 
-      tmp_user.ordi5(function (err, data) {
+      ordi5.save(function (err, data) {
                 if (err) console.log("failed to save user" + err);
                 else console.log('Saved ', data ); });
 
-      tmp_user.ordi6(function (err, data) {
+      ordi6.save(function (err, data) {
                 if (err) console.log("failed to save user" + err);
                 else console.log('Saved ', data ); });
 
