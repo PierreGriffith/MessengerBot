@@ -186,9 +186,9 @@ function send_ordinateur(recipient_id, res)
     Ordi.find({name : res}, function(err, resp) 
             {
         
-    console.log(JSON.parse(resp))  
+  
 //    console.log(resp[0].name)
-   // console.log(resp[0].link)
+    console.log(resp[0].link)
         
     var buttons =  [
        { 
