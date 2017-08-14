@@ -181,13 +181,10 @@ function processMessage(event)
 
 function send_ordinateur(recipient_id, res)
 {
+    
+    console.log(res)
     Ordi.find({name : res}, function(err, resp) 
-    {
-        console.log(resp)
-              if (resp.length == 0) 
-              {
-                console.log("Ordinateur non trouvé")
-              } else { 
+            {
                     var buttons =  [
        { 
         "type":"web_url",
@@ -197,7 +194,7 @@ function send_ordinateur(recipient_id, res)
       }
                     ]
                     Sendbuttons(recipient_id, "Voici un ordinateur qui correspond à votre utilisation", buttons)
-              }
+              
     }) 
     
 }
@@ -209,12 +206,16 @@ function send_ordinateur(recipient_id, res)
 
 function inserttype_db(recipent_id, message)
 {
-    User.find( {user_id : recipent_id}, function(err, res) 
+    User.find( {user_id : recipent_id}, function(err, res) {
+              if (res.length == 0) 
               {
                   res.type = message  
                   tmp_user.save(function (err, data) {
                 if (err) console.log("failed to save user" + err);
                 else console.log('Saved ', data ); });
+              }
+                else 
+                    return 
             }) 
 }
 
