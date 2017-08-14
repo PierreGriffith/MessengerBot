@@ -191,8 +191,7 @@ function send_ordinateur(recipient_id, res)
        { 
         "type":"web_url",
         "url": "lol",
-        "title":"Ordinateur pour " + resp.name + "" ,
-        "webview_height_ratio": "compact"
+        "title":"Ordinateur pour"
       }]
                   
     Sendbuttons(recipient_id, "Voici un ordinateur qui correspond à votre utilisation", buttons)
