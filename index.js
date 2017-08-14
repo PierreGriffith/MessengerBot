@@ -165,8 +165,8 @@ function processMessage(event)
     
         
     }
+  }
 }
-
 
 /* FUNCTION FOR DATABASE */
 
