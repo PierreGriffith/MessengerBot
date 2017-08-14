@@ -187,7 +187,7 @@ function send_ordinateur(recipient_id, res)
     {
     
 //    console.log(resp[0].name)
-    console.log(resp)
+//    console.log(resp)
         
     var buttons =  [
        { 
