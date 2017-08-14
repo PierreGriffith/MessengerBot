@@ -188,7 +188,7 @@ function send_ordinateur(recipient_id, res)
                 
         var link = JSON.stringify(resp) 
         
-        link = link.split(/"/)[8]
+        link = link.split(/"/)[7]
         console.log(link)
        
     var buttons =  [
