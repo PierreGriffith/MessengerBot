@@ -188,7 +188,7 @@ function send_ordinateur(recipient_id, res)
                 
         var link = JSON.stringify(resp) 
         
-        console.log(link.link)
+        console.log(link)
 
         
         /*
