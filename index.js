@@ -165,12 +165,11 @@ function processMessage(event)
         {
             //var _obj = response.fulfillment.speech
             //var res = _obj.toLowerCase();
-            console.log(response)
+            console.log(response.result)
             
-            var obj = JSON.parse(response)
             
             //console.log(res)
-            console.log(obj)
+           // console.log(obj)
            // console.log(obj.response)
             //send_ordinateur(senderId, res)
         });
