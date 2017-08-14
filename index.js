@@ -188,17 +188,17 @@ function send_ordinateur(recipient_id, res)
                 
         var link = JSON.stringify(resp) 
         
-        var split = link.split(",");
-
+        link = link.split(/"/)
+       /* var split = link.split(",");
         var split2 = split[1];
         
         var split3 = split2.match( /"link":"(.+)"}]/)
     
-//        console.log(split)
+       console.log(split)
         console.log(split3)
+*/
         
-        "link":"https://www.amazon.com/gp/product/B06XJJG4PD/ref=s9_acss_bw_cg_cegwcacl_2b1_w?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=unified-hybrid-3&pf_rd_r=MHCQN6707HB17D481YXH&pf_rd_t=101&pf_rd_p=18fb6928-37c1-4329-a8ec-2b500302e85b&pf_rd_i=565108"}]
-        
+        console.log(link)
         /*
         console.log(link + "--------------------")
         console.log(link.link)
