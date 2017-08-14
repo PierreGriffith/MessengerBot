@@ -20,10 +20,11 @@ app.listen((process.env.PORT || 5000));
 
 var app_ai = apiai("d18d648063d34b2e872e0b5b5ce83232");
 
+/*
 var request = app.textRequest('<Your text query>', {
     sessionId: 'pcmongallet'
 });
-
+*/
 
 
 // Server index page
