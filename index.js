@@ -20,11 +20,12 @@ app.listen((process.env.PORT || 5000));
 
 var app_ai = apiai(process.env.CREDENTIALS_APIAI);
 
-
+/*
 var request = app.textRequest('<Your text query>', {
     sessionId: 'pcmongallet'
 });
 
+*/
 
 // Server index page
 app.get("/", function (req, res) {
@@ -131,10 +132,7 @@ function processMessage(event) {
     // You may get a text or attachment but not both
     if (message.text) {
       var formattedMsg = message.text.toLowerCase().trim();
-
-      // If we receive a text message, check to see if it matches any special
-      // keywords and send back the corresponding movie detail.
-      // Otherwise, search for new movie.
+        
       if (formattedMsg == "Gaming" ) 
       sendMessage(senderId, {text: "Quels jeux ou quelle carte graphique vous plairait - il de voir"});
 
@@ -148,9 +146,6 @@ function processMessage(event) {
       sendMessage(senderId, {text: "Sorry, I don't understand your request."});
     }
 }
-
-
-
 
 
 /* FUNCTION FOR DATABASE */
