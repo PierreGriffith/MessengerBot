@@ -190,7 +190,9 @@ function send_ordinateur(recipient_id, res)
         console.log(link + "--------------------")
         console.log(link.link)
         console.log(resp.link)
+        console.log(resp.link)
         
+        console.log(JSON.parse(link))
         
         
     var buttons =  [
