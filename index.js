@@ -18,13 +18,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.listen((process.env.PORT || 5000));
 
-var app_ai = apiai("d18d648063d34b2e872e0b5b5ce83232");
+var app_ai = apiai(process.env.CREDENTIALS_APIAI);
 
-/*
+
 var request = app.textRequest('<Your text query>', {
     sessionId: 'pcmongallet'
 });
-*/
 
 
 // Server index page
@@ -56,7 +55,10 @@ app.post("/webhook", function (req, res) {
         entry.standby.forEach(function(event){
             if (event.postback) {
                 processPostback(event);
-            }
+            } else if (event.message) {
+          processMessage(event);
+        }
+            
         });
       }
             
@@ -94,18 +96,18 @@ function processPostback(event) {
           {
             "type":"postback",  
             "title":"Gaming",
-            "payload":"DEVELOPER_DEFINED_PAYLOAD"
+            "payload":"Gaming"
           },
           {
             "type":"postback",    
             "title":"Bureau",
-            "payload":"DEVELOPER_DEFINED_PAYLOAD"
+            "payload":"Bureau"
           
           },          
           {
             "type":"postback",    
             "title":"Navigation",
-            "payload":"DEVELOPER_DEFINED_PAYLOAD"
+            "payload":"Navigation"
           }
                      ]
       
@@ -115,6 +117,40 @@ function processPostback(event) {
         })
       }
 }
+
+
+
+function processMessage(event) {
+  if (!event.message.is_echo) {
+    var message = event.message;
+    var senderId = event.sender.id;
+
+    console.log("Received message from senderId: " + senderId);
+    console.log("Message is: " + JSON.stringify(message));
+
+    // You may get a text or attachment but not both
+    if (message.text) {
+      var formattedMsg = message.text.toLowerCase().trim();
+
+      // If we receive a text message, check to see if it matches any special
+      // keywords and send back the corresponding movie detail.
+      // Otherwise, search for new movie.
+      if (formattedMsg == "Gaming" ) 
+      sendMessage(senderId, {text: "Quels jeux ou quelle carte graphique vous plairait - il de voir"});
+
+      if (formattedMsg == "Bureau" ) 
+      sendMessage(senderId, {text: "dans quoi travaillez vous ? ou quel suite de logiciels utilisez vous"});
+
+      if (formattedMsg == "Navigation" ) 
+      sendMessage(senderId, {text: "quels site allez vous consultez"});
+      }
+    } else if (message.attachments) {
+      sendMessage(senderId, {text: "Sorry, I don't understand your request."});
+    }
+}
+
+
+
 
 
 /* FUNCTION FOR DATABASE */
