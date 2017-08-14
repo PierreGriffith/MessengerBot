@@ -188,8 +188,6 @@ function send_ordinateur(recipient_id, res)
                 
         var link = JSON.stringify(resp) 
         
-        console.log(link)
-
         
         /*
         console.log(link + "--------------------")
@@ -199,7 +197,7 @@ function send_ordinateur(recipient_id, res)
         console.log(resp.link)
         */
         var obj = JSON.parse(link)    
-        
+        console.log(lobj.link)
         
     var buttons =  [
        { 
