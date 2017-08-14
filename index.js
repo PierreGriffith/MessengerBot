@@ -20,68 +20,6 @@ app.listen((process.env.PORT || 5000));
 
 var app_ai = apiai(process.env.CREDENTIALS_APIAI);
 
-  var ordi1 = new Ordi({
-     ordi_id:"1" ,
-    link: "https://www.amazon.com/gp/product/B06XJJG4PD/ref=s9_acss_bw_cg_cegwcacl_2b1_w?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=unified-hybrid-3&pf_rd_r=MHCQN6707HB17D481YXH&pf_rd_t=101&pf_rd_p=18fb6928-37c1-4329-a8ec-2b500302e85b&pf_rd_i=565108" ,
-    name:"mails" ,  
-            })
-
-  var ordi2 = new Ordi({
-     ordi_id: "2" ,
-    link:"https://www.amazon.com/Lightweight-11-6-inch-Quad-Core-Microsoft-Subscription/dp/B01LT692RK/ref=zg_bs_565108_4?_encoding=UTF8&psc=1&refRID=ADWJ5Y7D2GG828EQ5917" ,
-    name: "youtube",  
-            })
-
-  var ordi3 = new Ordi({
-     ordi_id: "3",
-    link: "https://www.amazon.com/Acer-Predator-Processor-Graphics-G3-571-77QK/dp/B06Y4GZS9C/ref=lp_8588812011_1_1?s=pc&ie=UTF8&qid=1502703311&sr=1-1",
-    name: "lol",  
-            })
-
-  var ordi4 = new Ordi({
-     ordi_id: "4",
-    link: "https://www.amazon.com/Lenovo-Legion-Y520-i5-7300HQ-80WK00FHUS/dp/B06WVMJ713/ref=lp_8588812011_1_14?s=pc&ie=UTF8&qid=1502703311&sr=1-14" ,
-    name: "csgo",  
-            })
-
-  var ordi5 = new Ordi({
-     ordi_id: "5",
-    link: "https://www.amazon.fr/Microsoft-Surface-tactile-i5-g%C3%A9n%C3%A9ration/dp/B071H946XT/ref=sr_1_3?s=computers&ie=UTF8&qid=1502704919&sr=1-3&keywords=laptop",
-    name:"adobe" ,  
-            })
-
-  var ordi6 = new Ordi({
-     ordi_id: "6",
-    link: "https://www.amazon.com/gp/product/B06XJJG4PD/ref=s9_acss_bw_cg_cegwcacl_2b1_w?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=unified-hybrid-3&pf_rd_r=MHCQN6707HB17D481YXH&pf_rd_t=101&pf_rd_p=18fb6928-37c1-4329-a8ec-2b500302e85b&pf_rd_i=565108",
-    name: "outlook",  
-            })
-
-  
-      ordi1.save(function (err, data) {
-                if (err) console.log("failed to save user" + err);
-                else console.log('Saved ', data ); });
-
-      ordi2.save(function (err, data) {
-                if (err) console.log("failed to save user" + err);
-                else console.log('Saved ', data ); });
-
-      ordi3.save(function (err, data) {
-                if (err) console.log("failed to save user" + err);
-                else console.log('Saved ', data ); });
-
-      ordi4.save(function (err, data) {
-                if (err) console.log("failed to save user" + err);
-                else console.log('Saved ', data ); });
-
-      ordi5.save(function (err, data) {
-                if (err) console.log("failed to save user" + err);
-                else console.log('Saved ', data ); });
-
-      ordi6.save(function (err, data) {
-                if (err) console.log("failed to save user" + err);
-                else console.log('Saved ', data ); });
-
-
 // Server index page
 app.get("/", function (req, res) {
   res.send("Deployed!");
@@ -227,6 +165,8 @@ function processMessage(event)
         {
             var _obj = response.fulfillment.speech
             var res = _obj.toLowerCase();
+            send_ordinateur(senderId, res)
+            
         
         });
 
@@ -239,8 +179,33 @@ function processMessage(event)
   }
 }
 
-/* FUNCTION FOR DATABASE */
 
+
+function send_ordinateur(recipient_id, res)
+{
+    Ordi.find({name : res}, function(err, resp) {
+              if (resp.length == 0) 
+              {
+                console.log("Ordinateur non trouvé")
+              } else { 
+                    var buttons =  [
+       { 
+        "type":"web_url",
+        "url": resp.link,
+        "title":"Ordinateur pour " + res ,
+        "webview_height_ratio": "compact"
+      }
+                    ]
+                    Sendbuttons(recipient_id, "Voici un ordinateur qui correspond à votre utilisation", buttons )
+              }
+    }) 
+    
+}
+
+
+
+
+/* FUNCTION FOR DATABASE */
 
 function inserttype_db(recipent_id, message)
 {
