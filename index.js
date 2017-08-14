@@ -188,6 +188,13 @@ function send_ordinateur(recipient_id, res)
                 
         var link = JSON.stringify(resp) 
         
+        var split = str.split(",");
+
+        var split2 = split[1];
+        
+        console.log(split)
+        console.log(split2)
+        
         
         /*
         console.log(link + "--------------------")
