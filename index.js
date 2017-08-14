@@ -49,23 +49,37 @@ app.post("/webhook", function (req, res) {
     // There may be multiple entries if batched
     req.body.entry.forEach(function(entry) 
     {
-      if (entry.messaging == undefined) {
+      if (entry.messaging == undefined) 
+      {
       // Iterate over each messaging event
+        
         entry.standby.forEach(function(event){
-            if (event.postback) {
+            if (event.postback) 
+            {
                 processPostback(event);
-            } else if (event.message) {
-          processMessage(event);
-        }
+            } else if (event.message) 
+            {
+                processMessage(event);
+            }
             
         });
       }
             
-        else {
+        else 
+        {
         entry.messaging.forEach(function(event) {
-        if (event.postback) {
+        if (event.postback) 
+        {
           processPostback(event);
-        }});
+        }
+        else if (event.message) 
+        {
+                processMessage(event);
+        }
+            
+        
+        
+        });
         }
     
     
@@ -140,6 +154,7 @@ function processPostback(event) {
 
 function processMessage(event) 
 {
+    console.logs("FUCK THIS HOE")
     
   if (!event.message.is_echo) {
     var message = event.message;
