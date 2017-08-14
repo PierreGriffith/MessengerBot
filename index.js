@@ -183,12 +183,11 @@ function send_ordinateur(recipient_id, res)
 {
     
     
-    Ordi.find({name : res}, function(err, resp) 
-            {
-    var data = resp.toObject();  
-  
+    Ordi.find({name : res},"link",function(err, resp) 
+    {
+    
 //    console.log(resp[0].name)
-    console.log(data.link)
+    console.log(resp)
         
     var buttons =  [
        { 
