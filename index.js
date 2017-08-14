@@ -196,7 +196,7 @@ function send_ordinateur(recipient_id, res)
         console.log(resp.link)
         console.log(resp.link)
         */
-        var obj = JSON.parse(link)
+        var obj = JSON.parse(resp)
         
         console.log(obj)
         
