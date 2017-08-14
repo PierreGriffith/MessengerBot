@@ -119,13 +119,13 @@ function processPostback(event) {
       }
     
     if (payload == "Gaming" ) {
-      sendmessage(senderId, {text: "Quels jeux ou quelle carte graphique vous plairait - il de voir"}); }
+      sendmessage(recipient_id, {text: "Quels jeux ou quelle carte graphique vous plairait - il de voir"}); }
 
       if (payload == "Bureau" ) { 
-      sendmessage(senderId, {text: "dans quoi travaillez vous ? ou quel suite de logiciels utilisez vous"}); }
+      sendmessage(recipient_id, {text: "dans quoi travaillez vous ? ou quel suite de logiciels utilisez vous"}); }
 
       if (payload == "Navigation" ) { 
-      sendmessage(senderId, {text: "quels site allez vous consultez"}); }
+      sendmessage(recipient_id, {text: "quels site allez vous consultez"}); }
       
     
     
