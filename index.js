@@ -165,6 +165,8 @@ function processMessage(event)
         {
             var _obj = response.fulfillment.speech
             var res = _obj.toLowerCase();
+            
+            console.log("FUCK")
             send_ordinateur(senderId, res)
             
         
@@ -196,7 +198,7 @@ function send_ordinateur(recipient_id, res)
         "webview_height_ratio": "compact"
       }
                     ]
-                    Sendbuttons(recipient_id, "Voici un ordinateur qui correspond à votre utilisation", buttons )
+                    Sendbuttons(recipient_id, "Voici un ordinateur qui correspond à votre utilisation", buttons)
               }
     }) 
     
