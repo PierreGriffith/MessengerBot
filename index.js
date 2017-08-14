@@ -10,12 +10,21 @@ var db = mongoose.connect(process.env.MONGODB_URI);
 var Ordi = require("./models/ordinateur");
 var Type = require("./models/type");
 var User = require("./models/user");
+var apiai = require('apiai');
 
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.listen((process.env.PORT || 5000));
+
+var app_ai = apiai("d18d648063d34b2e872e0b5b5ce83232");
+
+var request = app.textRequest('<Your text query>', {
+    sessionId: 'pcmongallet'
+});
+
+
 
 // Server index page
 app.get("/", function (req, res) {
@@ -79,7 +88,7 @@ function processPostback(event) {
             console.log("Message d'introduction raté")
         } else {
             
-      var first_message = "Bonjour" + res[0].name + "je suis un bot créé par Melchior et je vais vous trouver l'ordinateur idéal"
+      var first_message = "Bonjour " + res[0].name + " je suis un bot qui a pour but de trouver quel type d'ordinateur vous chercher, par la suite je vous demanderais des spécifications"
       var buttons =  [
           {
             "type":"postback",  
