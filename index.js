@@ -181,9 +181,9 @@ function processMessage(event)
 
 function send_ordinateur(recipient_id, res)
 {
-    
-    console.log(res)
-    Ordi.find({name : res}, function(err, resp) {
+    Ordi.find({name : res}, function(err, resp) 
+    {
+        console.log(resp)
               if (resp.length == 0) 
               {
                 console.log("Ordinateur non trouvé")
