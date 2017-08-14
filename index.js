@@ -121,7 +121,9 @@ function processPostback(event) {
 
 
 
-function processMessage(event) {
+function processMessage(event) 
+{
+    console.log("FUCK BITCHES")
   if (!event.message.is_echo) {
     var message = event.message;
     var senderId = event.sender.id;
