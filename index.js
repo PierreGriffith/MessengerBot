@@ -166,8 +166,11 @@ function processMessage(event)
             //var _obj = response.fulfillment.speech
             //var res = _obj.toLowerCase();
             console.log(response)
+            var obj = JSON.parse(response)
+            
             //console.log(res)
-            console.log("FUCK")
+            console.log(obj)
+            console.log(obj.response)
             //send_ordinateur(senderId, res)
         });
 
