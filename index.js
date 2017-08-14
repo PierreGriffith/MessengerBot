@@ -154,21 +154,14 @@ function processPostback(event) {
 
 function processMessage(event) 
 {    
-    /*
-  if (!event.message.is_echo) 
-  {
-      */
       
-    var message = event.message;
-    var senderId = event.sender.id;
-
-    console.log("Received message from senderId: " + senderId);
-    console.log("Message is: " + JSON.stringify(message));
-
+ var message = event.message;
+ var senderId = event.sender.id;
+ 
     // You may get a text or attachment but not both
     if (message.text) 
     {
-        var request = app.textRequest(message.text, {
+        var request = app_ai.textRequest(message.text, {
             sessionId: 'pcmongallet'
         });
         
@@ -180,9 +173,6 @@ function processMessage(event)
         console.log(error);
     });
     
-    /*    
-    }
-    */
   }
 }
 
