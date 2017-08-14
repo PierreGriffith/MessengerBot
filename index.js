@@ -151,7 +151,6 @@ function processPostback(event) {
 }
 
 
-
 function processMessage(event) 
 {    
       
@@ -159,7 +158,9 @@ function processMessage(event)
  var senderId = event.sender.id;
  
     // You may get a text or attachment but not both
-    if (message.text) 
+    
+    
+    if (!message.text) 
     {
         var request = app_ai.textRequest(message.text, {
             sessionId: 'pcmongallet'
