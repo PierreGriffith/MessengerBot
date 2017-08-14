@@ -188,31 +188,12 @@ function send_ordinateur(recipient_id, res)
                 
         var link = JSON.stringify(resp) 
         
-        link = link.split(/"/)
-       /* var split = link.split(",");
-        var split2 = split[1];
-        
-        var split3 = split2.match( /"link":"(.+)"}]/)
-    
-       console.log(split)
-        console.log(split3)
-*/
-        
-        console.log(link)
-        /*
-        console.log(link + "--------------------")
-        console.log(link.link)
-        
-        console.log(resp.link)
-        console.log(resp.link)
-        */
-        //var obj = JSON.parse(resp)
-        
-        
+        link = link.split(/"/)[6]
+       
     var buttons =  [
        { 
         "type":"web_url",
-        "url": "lol",
+        "url": link,
         "title":"Ordinateur pour",
         "webview_height_ratio": "compact"
 
