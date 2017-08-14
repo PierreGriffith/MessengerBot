@@ -153,9 +153,7 @@ function processPostback(event) {
 
 
 function processMessage(event) 
-{
-    console.logs("FUCK THIS HOE")
-    
+{    
   if (!event.message.is_echo) {
     var message = event.message;
     var senderId = event.sender.id;
