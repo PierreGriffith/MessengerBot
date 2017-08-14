@@ -151,10 +151,7 @@ function processMessage(event)
       
  var message = event.message;
  var senderId = event.sender.id;
- 
-    // You may get a text or attachment but not both
-    
-    
+     
     if (message.text) 
     {        
         var request = app_ai.textRequest(message.text, {
@@ -195,7 +192,7 @@ function send_ordinateur(recipient_id, res)
        { 
         "type":"web_url",
         "url": link,
-        "title":"Ordinateur pour",
+        "title":"Ordinateur pour" + res,
         "webview_height_ratio": "compact"
 
       }]
@@ -217,7 +214,7 @@ function inserttype_db(recipent_id, message)
               {
                   res.type = message  
                   tmp_user.save(function (err, data) {
-                if (err) console.log("failed to save user" + err);
+                if (err) console.log("echec de la sauvegarde" + err);
                 else console.log('Saved ', data ); });
               }
                 else 
@@ -240,7 +237,7 @@ function insertname_db(recipent_id)
     }, function(error, response, body) {
       var greeting = "";
        if (error) {
-        console.log("Error getting user's name: " +  error);
+        console.log("Reception du prénom échoué: " +  error);
       } else  {
             var bodyObj = JSON.parse(body);
             response = bodyObj.first_name;
@@ -256,10 +253,9 @@ function insertname_db(recipent_id)
           User.find( {user_id : recipent_id}, function(err, res) {
               if (res.length == 0) 
               {
-                  console.log(res.length + "ALLLO")
                   tmp_user.save(function (err, data) {
-                if (err) console.log("failed to save user" + err);
-                else console.log('Saved ', data ); });
+                if (err) console.log("echec de la sauvegarde" + err);
+                else console.log('Sauvegardé ', data ); });
               }
                 else 
                     return 
@@ -269,7 +265,7 @@ function insertname_db(recipent_id)
 }
 
 
-/*       FUNCTION FOR FACEBOOK       */
+/*       FONCTION POUR FACEBOOK       */
 
 
 function Sendbuttons(recipent_id, button_message, buttons){
@@ -293,12 +289,10 @@ function Sendbuttons(recipent_id, button_message, buttons){
     }
           , function(error, response, body) {
     if (error) {
-      console.log("Error sending message: " + response.error);
+      console.log(" reception du message échoué : " + response.error);
     }
   });
 }
-
-
 
 
 
@@ -313,7 +307,7 @@ function sendmessage(recipient_id, message) {
     }
   }, function(error, response, body) {
     if (error) {
-      console.log("Error sending message: " + response.error);
+      console.log(" reception du message échoué : " + response.error);
     }
   });
 }
