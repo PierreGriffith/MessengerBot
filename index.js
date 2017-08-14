@@ -161,15 +161,13 @@ function processMessage(event)
     
     
     if (message.text) 
-    {
-        console.log(message.text)
-        
+    {        
         var request = app_ai.textRequest(message.text, {
             sessionId: 'pcmongallet'
         });
         
         request.on('response', function(response) {
-            console.log(response);
+            console.log(response + "OULOULOU");
         });
 
     request.on('error', function(error) {
