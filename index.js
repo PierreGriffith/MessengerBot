@@ -160,8 +160,10 @@ function processMessage(event)
     // You may get a text or attachment but not both
     
     
-    if (!message.text) 
+    if (message.text) 
     {
+        console.log(message.text)
+        
         var request = app_ai.textRequest(message.text, {
             sessionId: 'pcmongallet'
         });
