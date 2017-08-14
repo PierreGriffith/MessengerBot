@@ -209,16 +209,12 @@ function send_ordinateur(recipient_id, res)
 
 function inserttype_db(recipent_id, message)
 {
-    User.find( {user_id : recipent_id}, function(err, res) {
-              if (res.length == 0) 
+    User.find( {user_id : recipent_id}, function(err, res) 
               {
                   res.type = message  
                   tmp_user.save(function (err, data) {
                 if (err) console.log("failed to save user" + err);
                 else console.log('Saved ', data ); });
-              }
-                else 
-                    return 
             }) 
 }
 
